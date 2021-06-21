@@ -88,8 +88,8 @@ class _CategoryTestState extends State<CategoryTest> {
                     children: [
                       for (int i = 0; i < 4; i++)
                         InkWell(
-                          onTap: () {
-                            _categoryTestCubit.takeAnswer(context, i);
+                          onTap: () async  {
+                            await _categoryTestCubit.takeAnswer(context, i);
                           },
                           child: Container(
                             decoration: BoxDecoration(

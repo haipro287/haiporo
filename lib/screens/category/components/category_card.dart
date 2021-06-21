@@ -9,8 +9,9 @@ import 'package:haiporo/screens/category/category.module.dart';
 
 class CategoryCard extends StatefulWidget {
   final WordCategory category;
+  final double progress;
 
-  CategoryCard(this.category);
+  CategoryCard(this.category, this.progress);
 
   @override
   _CategoryCardState createState() => _CategoryCardState();
@@ -56,7 +57,7 @@ class _CategoryCardState extends State<CategoryCard> {
               horizontal: SizeConstant.safeBlockHorizontal * 15,
             ),
             child: LinearProgressIndicator(
-              value: 0.5,
+              value: widget.progress,
               minHeight: 10,
             ),
           ),

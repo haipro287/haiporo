@@ -22,4 +22,8 @@ class WordRepository {
       return Word.fromJson(maps[i]);
     });
   }
+  
+  Future<void> incrementRight(Word word) async {
+    await (await db).rawUpdate('UPDATE av SET right = ? WHERE id = ?', [word.right +1, word.id]);
+  }
 }

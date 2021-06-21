@@ -19,4 +19,8 @@ class HomeCubit extends Cubit<HomeState> {
     themes = await _themeRepository.getWordTheme();
     emit(HomeLoaded());
   }
+
+  Future<double> getThemeProgress(int themeId) async {
+    return await _themeRepository.getThemeProgress(themeId);
+  }
 }

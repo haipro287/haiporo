@@ -30,7 +30,7 @@ class SearchCubit extends Cubit<SearchState> {
       (Timer timer) async {
         if (value == 0) {
           await search(textEditingController.text);
-          value = 2;
+          value = 1;
         } else {
           value--;
         }

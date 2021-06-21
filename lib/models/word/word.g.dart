@@ -13,6 +13,7 @@ Word _$WordFromJson(Map<String, dynamic> json) {
     json['description'] as String,
     json['pronounce'] as String,
     json['html'] as String,
+    json['right'] as int,
   );
 }
 
@@ -22,4 +23,5 @@ Map<String, dynamic> _$WordToJson(Word instance) => <String, dynamic>{
       'description': instance.description,
       'pronounce': instance.pronounce,
       'html': instance.html,
+      'right': instance.right,
     };

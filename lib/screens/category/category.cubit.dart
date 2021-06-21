@@ -19,4 +19,8 @@ class CategoryCubit extends Cubit<CategoryState> {
     cats = await _categoryRepository.getWordCategory(themeId);
     emit(CategoryLoaded());
   }
+
+  Future<double> getCategoryProgress(int categoryId) async {
+    return await _categoryRepository.getCategoryProgress(categoryId);
+  }
 }

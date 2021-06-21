@@ -62,7 +62,7 @@ class CategoryTestCubit extends Cubit<CategoryTestState> {
     emit(CategoryTestQuestionLoaded());
   }
 
-  void takeAnswer(BuildContext context, i) {
+  Future<void> takeAnswer(BuildContext context, i) async {
     if (i != answer) {
       heart--;
       if (heart == 0) {
@@ -72,6 +72,7 @@ class CategoryTestCubit extends Cubit<CategoryTestState> {
         getQuestion();
       }
     } else {
+      await _wordRepository.incrementRight(words[questions[answer]]);
       if (current == questionNumber) {
         timer.cancel();
         showSuccessDialog(context);

@@ -71,53 +71,70 @@ class _CategoryListState extends State<CategoryList> {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: InkWell(
-                  child: LayoutBuilder(builder:
-                      (BuildContext context, BoxConstraints constrains) {
-                    return Row(
-                      children: [
-                        Container(
-                          child: Image(
-                            image: AssetImage(
-                              File("assets/images/words/${word.word}.png")
-                                  .existsSync() ==
-                                  true
-                                  ? "assets/images/words/${word.word}.png"
-                                  : "assets/images/fallback.png",
+                  child: LayoutBuilder(
+                    builder: (BuildContext context, BoxConstraints constrains) {
+                      return Stack(
+                        children: [
+                          Positioned(
+                            child: IconButton(
+                              icon: word.right >= 3
+                                  ? Icon(Icons.check_circle)
+                                  : Icon(Icons.check_circle_outline),
                             ),
+                            right: 0,
                           ),
-                        ),
-                        SizedBox(
-                          width: constrains.maxWidth - height,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                          Row(
                             children: [
-                              Text(
-                                word.word,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:
-                                        SizeConstant.safeBlockVertical * 3),
+                              Container(
+                                child: Image(
+                                  image: AssetImage(
+                                    File("assets/images/words/${word.word}.png")
+                                                .existsSync() ==
+                                            true
+                                        ? "assets/images/words/${word.word}.png"
+                                        : "assets/images/fallback.png",
+                                  ),
+                                ),
                               ),
-                              Text(
-                                word.pronounce,
-                                style: TextStyle(
-                                    fontStyle: FontStyle.italic,
-                                    fontFamily: CustomFontFamily.openSans),
+                              SizedBox(
+                                width: constrains.maxWidth - height,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      word.word,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize:
+                                              SizeConstant.safeBlockVertical *
+                                                  3),
+                                    ),
+                                    Text(
+                                      word.pronounce,
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontFamily:
+                                              CustomFontFamily.openSans),
+                                    ),
+                                    IconButton(
+                                      onPressed: () async {
+                                        await _categoryListCubit
+                                            .getTTS(word.word);
+                                      },
+                                      icon: Icon(Icons.volume_up),
+                                    ),
+                                    Text(word.description.split(", ")[0]),
+                                  ],
+                                ),
                               ),
-                              IconButton(
-                                onPressed: () async {
-                                  await _categoryListCubit.getTTS(word.word);
-                                },
-                                icon: Icon(Icons.volume_up),
-                              ),
-                              Text(word.description.split(", ")[0]),
                             ],
                           ),
-                        ),
-                      ],
-                    );
-                  }),
+                        ],
+                      );
+                    },
+                  ),
                   onTap: () {
                     Modular.to.pushNamed(
                         AppModule.category + CategoryModule.word,

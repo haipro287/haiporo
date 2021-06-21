@@ -103,15 +103,20 @@ class _HomeState extends State<Home> {
                           ],
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         ),
-                        CircularProgressIndicator(
-                          value: 0.5,
-                          backgroundColor:
-                              Theme.of(context).primaryColor.withOpacity(0.5),
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            //     Theme.of(context).primaryColor),
-                            // // strokeWidth: 20,
-                            Colors.black,
-                          ),
+                        FutureBuilder(
+                          future: _homeCubit.getThemeProgress(theme.id),
+                          builder: (context, snapshot) {
+                            return CircularProgressIndicator(
+                              value: snapshot.data as double,
+                              backgroundColor:
+                                  Theme.of(context).primaryColor.withOpacity(0.5),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                //     Theme.of(context).primaryColor),
+                                // // strokeWidth: 20,
+                                Colors.black,
+                              ),
+                            );
+                          }
                         ),
                       ],
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

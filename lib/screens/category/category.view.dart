@@ -18,7 +18,6 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   CategoryCubit _categoryCubit;
 
-
   @override
   void initState() {
     super.initState();
@@ -46,7 +45,13 @@ class _CategoryState extends State<Category> {
               separatorBuilder: (BuildContext context, int index) => SizedBox(
                 width: SizeConstant.safeBlockHorizontal * 10,
               ),
-              itemBuilder: (BuildContext context, int index) => CategoryCard(_categoryCubit.cats[index]),
+              itemBuilder: (BuildContext context, int index) {
+                return FutureBuilder(
+                    future: _categoryCubit
+                        .getCategoryProgress(_categoryCubit.cats[index].id),
+                    builder: (BuildContext context, snapshot) =>
+                        CategoryCard(_categoryCubit.cats[index], snapshot.data as double));
+              },
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(
                 vertical: SizeConstant.safeBlockVertical * 25,

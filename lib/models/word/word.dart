@@ -9,8 +9,9 @@ class Word {
   final String description;
   final String pronounce;
   final String html;
+  final int right;
 
-  Word(this.id, this.word, this.description, this.pronounce, this.html);
+  Word(this.id, this.word, this.description, this.pronounce, this.html, this.right);
 
   factory Word.fromJson(Map<String, dynamic> json) => _$WordFromJson(json);
 
