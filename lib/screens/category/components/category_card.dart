@@ -32,7 +32,7 @@ class _CategoryCardState extends State<CategoryCard> {
             offset: Offset(5, 5),
           ),
         ],
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(

@@ -67,7 +67,7 @@ class _CategoryListState extends State<CategoryList> {
                       offset: Offset(4, 4),
                     ),
                   ],
-                  color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: InkWell(

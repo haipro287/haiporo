@@ -32,7 +32,9 @@ class _HomeState extends State<Home> {
   ];
   final leading = IconButton(
     icon: Icon(Icons.settings),
-    onPressed: () => {},
+    onPressed: () => Modular.to.pushNamed(
+      AppModule.home + HomeModule.setting,
+    ),
   );
 
   @override
