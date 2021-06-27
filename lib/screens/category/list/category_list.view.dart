@@ -125,7 +125,9 @@ class _CategoryListState extends State<CategoryList> {
                                       },
                                       icon: Icon(Icons.volume_up),
                                     ),
-                                    Text(word.description.split(", ")[0]),
+                                    FittedBox(
+                                        child: Text(word.description
+                                            .split(RegExp(r"(, |; | \()"))[0])),
                                   ],
                                 ),
                               ),

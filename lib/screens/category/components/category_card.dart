@@ -21,7 +21,7 @@ class _CategoryCardState extends State<CategoryCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConstant.safeBlockVertical * 50,
+      height: SizeConstant.safeBlockVertical * 100,
       width: SizeConstant.safeBlockHorizontal * 60,
       decoration: BoxDecoration(
         boxShadow: [
@@ -61,15 +61,20 @@ class _CategoryCardState extends State<CategoryCard> {
               minHeight: 10,
             ),
           ),
-          Text(
-            widget.category.name,
-            style: TextStyle(
-                fontSize: SizeConstant.safeBlockHorizontal * 6,
-                fontWeight: FontWeight.bold),
+          FittedBox(
+            child: Text(
+              widget.category.name,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: SizeConstant.safeBlockHorizontal * 6,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
-          Text(
-            widget.category.description,
-            style: TextStyle(fontSize: SizeConstant.safeBlockHorizontal * 5.5),
+          FittedBox(
+            child: Text(
+              widget.category.description,
+              style: TextStyle(fontSize: SizeConstant.safeBlockHorizontal * 5.5),
+            ),
           ),
           ElevatedButton(
             child: Text("Detail"),

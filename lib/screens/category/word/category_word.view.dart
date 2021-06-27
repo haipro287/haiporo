@@ -80,14 +80,6 @@ class _CategoryWordState extends State<CategoryWord> {
                   },
                   icon: Icon(Icons.volume_up),
                 ),
-                // Text(
-                //   widget.word.description,
-                //   textAlign: TextAlign.center,
-                //   style: TextStyle(
-                //     fontSize: 30,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
                 Container(
                   child: Html(
                     data: widget.word.html.split("</i></h3>")[1],

@@ -70,6 +70,7 @@ flutter:
 
   assets:
     - assets/database/dict_hh.db
+    - assets/database/sql.db
     - assets/images/
     - assets/images/themes/
     - assets/images/categories/
