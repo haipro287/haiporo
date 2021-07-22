@@ -8,11 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:haiporo/models/word/word.dart';
 import 'package:haiporo/repositories/word/word.repository.dart';
+import 'package:just_audio/just_audio.dart';
 
 part 'category_test.state.dart';
 
 class CategoryTestCubit extends Cubit<CategoryTestState> {
   final WordRepository _wordRepository = WordRepository();
+  final AudioPlayer _audioPlayer = AudioPlayer();
   List<Word> words = [];
   int categoryId;
 
@@ -65,6 +67,8 @@ class CategoryTestCubit extends Cubit<CategoryTestState> {
   Future<void> takeAnswer(BuildContext context, i) async {
     if (i != answer) {
       heart--;
+      _audioPlayer.setAsset('assets/audios/wrong.m4a');
+      _audioPlayer.play();
       if (heart == 0) {
         timer.cancel();
         showFailDialog(context);
@@ -72,6 +76,8 @@ class CategoryTestCubit extends Cubit<CategoryTestState> {
         getQuestion();
       }
     } else {
+      _audioPlayer.setAsset('assets/audios/correct.m4a');
+      _audioPlayer.play();
       await _wordRepository.incrementRight(words[questions[answer]]);
       if (current == questionNumber) {
         timer.cancel();
@@ -105,6 +111,7 @@ class CategoryTestCubit extends Cubit<CategoryTestState> {
   Future<void> close() async {
     super.close();
     timer.cancel();
+    _audioPlayer.dispose();
   }
 
   Future<void> getThemeWord() async {

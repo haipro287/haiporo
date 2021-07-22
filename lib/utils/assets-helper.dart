@@ -1,9 +1,6 @@
 import 'package:flutter/services.dart';
+import 'package:just_audio/just_audio.dart';
 
-Future myLoadAsset(String path) async {
-  try {
-    return await rootBundle.loadString(path);
-  } catch(_) {
-    return null;
-  }
+class AudioHelper {
+  static AudioPlayer audioPlayer = AudioPlayer();
 }
