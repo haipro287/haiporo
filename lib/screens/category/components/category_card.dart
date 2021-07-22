@@ -41,12 +41,7 @@ class _CategoryCardState extends State<CategoryCard> {
           CircleAvatar(
             maxRadius: SizeConstant.safeBlockVertical * 10,
             child: Image(
-              image: AssetImage(
-                  File("assets/images/categories/${widget.category.name}.png")
-                              .existsSync() ==
-                          true
-                      ? "assets/images/categories/${widget.category.name}.png"
-                      : "assets/images/fallback.png"),
+              image: AssetImage("assets/images/categories/${widget.category.name}.png"),
             ),
           ),
           SizedBox(
@@ -59,6 +54,7 @@ class _CategoryCardState extends State<CategoryCard> {
             child: LinearProgressIndicator(
               value: widget.progress,
               minHeight: 10,
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
             ),
           ),
           FittedBox(

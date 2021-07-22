@@ -88,7 +88,7 @@ class _CategoryTestState extends State<CategoryTest> {
                     children: [
                       for (int i = 0; i < 4; i++)
                         InkWell(
-                          onTap: () async  {
+                          onTap: () async {
                             await _categoryTestCubit.takeAnswer(context, i);
                           },
                           child: Container(
@@ -104,14 +104,11 @@ class _CategoryTestState extends State<CategoryTest> {
                                   ),
                                 ]),
                             child: Center(
-                                child: Image(
-                              image: AssetImage(
-                                  File("assets/images/words/${_categoryTestCubit.words[_categoryTestCubit.questions[i]].word}")
-                                              .existsSync() ==
-                                          true
-                                      ? "assets/images/words/${_categoryTestCubit.words[_categoryTestCubit.questions[i]].word}"
-                                      : "assets/images/fallback.png"),
-                            )),
+                              child: Image(
+                                image: AssetImage(
+                                    "assets/images/words/${_categoryTestCubit.words[_categoryTestCubit.questions[i]].word}.png"),
+                              ),
+                            ),
                           ),
                         )
                     ],

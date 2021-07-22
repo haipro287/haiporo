@@ -55,12 +55,8 @@ class _HomeState extends State<Home> {
                 Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(
-                          File("assets/images/themes/${theme.name}.png")
-                                      .existsSync() ==
-                                  true
-                              ? "assets/images/themes/${theme.name}.png"
-                              : "assets/images/fallback.png"),
+                      image:
+                          AssetImage("assets/images/themes/${theme.name}.png"),
                       fit: BoxFit.cover,
                     ),
                     color: Theme.of(context).accentColor,
@@ -76,13 +72,12 @@ class _HomeState extends State<Home> {
                     child: Row(
                       children: [
                         Container(
+                          width: SizeConstant.blockSizeHorizontal * 10,
+                          height: SizeConstant.blockSizeHorizontal * 10,
                           child: Image(
+                            fit: BoxFit.fill,
                             image: AssetImage(
-                                File("assets/images/themes/${theme.name}.png")
-                                            .existsSync() ==
-                                        true
-                                    ? "assets/images/themes/${theme.name}.png"
-                                    : "assets/images/fallback.png"),
+                                "assets/images/themes/${theme.name}.png"),
                           ),
                         ),
                         Column(
@@ -106,20 +101,20 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         ),
                         FutureBuilder(
-                          future: _homeCubit.getThemeProgress(theme.id),
-                          builder: (context, snapshot) {
-                            return CircularProgressIndicator(
-                              value: snapshot.data as double,
-                              backgroundColor:
-                                  Theme.of(context).primaryColor.withOpacity(0.5),
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                //     Theme.of(context).primaryColor),
-                                // // strokeWidth: 20,
-                                Colors.black,
-                              ),
-                            );
-                          }
-                        ),
+                            future: _homeCubit.getThemeProgress(theme.id),
+                            builder: (context, snapshot) {
+                              return CircularProgressIndicator(
+                                value: snapshot.data as double,
+                                backgroundColor: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.5),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  //     Theme.of(context).primaryColor),
+                                  // // strokeWidth: 20,
+                                  Colors.black,
+                                ),
+                              );
+                            }),
                       ],
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     ),

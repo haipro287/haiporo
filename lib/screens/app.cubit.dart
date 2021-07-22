@@ -10,7 +10,6 @@ part 'app.state.dart';
 class AppCubit extends Cubit<AppState> {
   bool dark = false;
   ThemeData themeData;
-  Key key = UniqueKey();
 
   AppCubit() : super(AppInitial()) {
     getThemeSetting();
@@ -18,8 +17,9 @@ class AppCubit extends Cubit<AppState> {
 
   Future<void> getThemeSetting() async {
     var sp = await SharePreferencesHelper.getInstance();
-    dark = sp.getBool('dark')??true;
-    themeData = dark? CustomThemeData.darkTheme: CustomThemeData.lightTheme;
+    dark = sp.getBool('dark') ?? false;
+    print(dark);
+    themeData = dark ? CustomThemeData.darkTheme : CustomThemeData.lightTheme;
   }
 
   Future<void> setThemeSetting(bool dark) async {

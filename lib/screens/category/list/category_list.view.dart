@@ -76,24 +76,40 @@ class _CategoryListState extends State<CategoryList> {
                       return Stack(
                         children: [
                           Positioned(
-                            child: IconButton(
-                              icon: word.right >= 3
-                                  ? Icon(Icons.check_circle)
-                                  : Icon(Icons.check_circle_outline),
+                            child: Column(
+                              children: [
+                                IconButton(
+                                  icon: word.right >= 3
+                                      ? Icon(Icons.check_circle)
+                                      : Icon(Icons.check_circle_outline),
+                                  onPressed: () {},
+                                ),
+                                BlocBuilder<CategoryListCubit,
+                                    CategoryListState>(
+                                  bloc: _categoryListCubit,
+                                  builder: (context, state) {
+                                    return IconButton(
+                                      icon: word.fav != 0
+                                          ? Icon(Icons.star)
+                                          : Icon(Icons.star_border),
+                                      onPressed: () async {
+                                        await _categoryListCubit.clickFav(word);
+                                        await _categoryListCubit.getThemeWord(widget.category.id);
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                             right: 0,
                           ),
                           Row(
                             children: [
                               Container(
+                                width: SizeConstant.blockSizeHorizontal * 20,
                                 child: Image(
                                   image: AssetImage(
-                                    File("assets/images/words/${word.word}.png")
-                                                .existsSync() ==
-                                            true
-                                        ? "assets/images/words/${word.word}.png"
-                                        : "assets/images/fallback.png",
-                                  ),
+                                      "assets/images/words/${word.word}.png"),
                                 ),
                               ),
                               SizedBox(

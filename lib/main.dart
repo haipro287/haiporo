@@ -9,7 +9,7 @@ import 'package:haiporo/utils/share-preferences-helper.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var sp = await SharePreferencesHelper.getInstance();
-  var dark = sp.getBool('dark') ?? true;
+  var dark = sp.getBool('dark') ?? false;
   SystemChrome.setEnabledSystemUIOverlays(
       [SystemUiOverlay.bottom, SystemUiOverlay.top]); //<--
   SystemChrome.setSystemUIOverlayStyle(

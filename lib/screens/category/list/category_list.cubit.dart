@@ -13,7 +13,7 @@ class CategoryListCubit extends Cubit<CategoryListState> {
   final AudioPlayer _audioPlayer = AudioPlayer();
   List<Word> words = [];
 
-    CategoryListCubit(int categoryId) : super(CategoryListInitial()) {
+  CategoryListCubit(int categoryId) : super(CategoryListInitial()) {
     getThemeWord(categoryId);
   }
 
@@ -34,5 +34,12 @@ class CategoryListCubit extends Cubit<CategoryListState> {
       },
     );
     _audioPlayer.play();
+  }
+
+  Future<void> clickFav(Word word) async {
+    print('Hello');
+    emit(CategoryListLoading());
+    await _wordRepository.updateFav(word);
+    emit(CategoryListLoaded());
   }
 }

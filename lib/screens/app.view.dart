@@ -30,14 +30,19 @@ class _AppWidgetState extends State<AppWidget> {
     return BlocBuilder<AppCubit, AppState>(
       bloc: _appCubit,
       builder: (context, snapshot) {
-        return MaterialApp(
-          key: key,
-          title: 'Haiporo',
-          theme: _appCubit.themeData,
-          home: Splash(),
-          initialRoute: "/splash",
-          debugShowCheckedModeBanner: false,
-        ).modular();
+        return FutureBuilder(
+          future: _appCubit.getThemeSetting(),
+          builder: (context, snapshot) {
+            return MaterialApp(
+              key: key,
+              title: 'Haiporo',
+              theme: _appCubit.themeData,
+              home: Splash(),
+              initialRoute: "/splash",
+              debugShowCheckedModeBanner: false,
+            ).modular();
+          }
+        );
       },
     );
   }

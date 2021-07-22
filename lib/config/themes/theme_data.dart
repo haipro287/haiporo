@@ -26,5 +26,14 @@ class CustomThemeData {
       thumbColor: MaterialStateProperty.all<Color>(Color(0xffffcdd2)),
       trackColor: MaterialStateProperty.all<Color>(Color(0xffffcdd2)),
     ),
+    textTheme: ThemeData.dark().textTheme.apply(
+      fontFamily: CustomFontFamily.googleSans,
+    ),
+    primaryTextTheme: ThemeData.dark().textTheme.apply(
+      fontFamily: CustomFontFamily.googleSans,
+    ),
+    accentTextTheme: ThemeData.dark().textTheme.apply(
+      fontFamily: CustomFontFamily.googleSans,
+    ),
   );
 }
